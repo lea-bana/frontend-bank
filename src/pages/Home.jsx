@@ -1,32 +1,26 @@
-import React, { useEffect } from "react";
-import { featureData } from "../services/data";
-import Hero from "../components/Hero";
-import Feature from "../components/Feature";
+import Feature from '../components/feature'
+import { featuresData } from '../data/data'
 
-/**
- * Render the Home component
- * @returns {Reactnode} jsx injected in DOM
- */
-export default function Home() {
-  useEffect(() => {
-    document.title = "Argent Bank | Home";
-    document.body.classList.remove("bg-dark");
-  }, []);
-
-  return (
-    <>
-      <Hero />
-      <main className="main home">
-        {featureData.map((item) => (
-          <Feature
-            key={item.id}
-            src={item.icon}
-            alt={item.alt}
-            title={item.title}
-            paragraph={item.paragraph}
-          />
-        ))}
-      </main>
-    </>
-  );
+function Home() {
+    return (
+        <main className="homepage">
+          <div className="hero">
+            <section className="hero-content">
+              <h2 className="sr-only">Promoted Content</h2>
+              <p className="subtitle">No fees.</p>
+              <p className="subtitle">No minimum deposit.</p>
+              <p className="subtitle">High interest rates.</p>
+              <p className="text">Open a savings account with Argent Bank today!</p>
+            </section>
+          </div>
+          <section className='features'>
+            <h2 className='sr-only'>Features</h2>
+            {featuresData && featuresData.map((e, i) => (
+              <Feature key={i} src={e.imgSrc} alt={e.alt} title={e.title} text={e.text} />
+            ))}
+          </section>
+        </main>
+    )
 }
+
+export default Home
